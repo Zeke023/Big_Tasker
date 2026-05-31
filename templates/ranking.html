@@ -1,0 +1,31 @@
+<h1>
+    Ranking Global
+</h1>
+
+<hr>
+
+{% for usuario in ranking %}
+
+    <div>
+
+        <h2>
+            #{{ loop.index }}
+        </h2>
+
+        <p>
+            Usuário: {{ usuario[0] }}
+        </p>
+
+        <p>
+            Rank: {{ usuario[2] }}
+        </p>
+
+        <p>
+            XP: {{ usuario[1] }}
+        </p>
+
+        <hr>
+
+    </div>
+
+{% endfor %}

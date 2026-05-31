@@ -1,0 +1,55 @@
+<h1>Editar Tarefa</h1>
+
+<form method="POST">
+
+    <label>Título:</label>
+
+    <input
+        type="text"
+        name="titulo"
+        value="{{ tarefa[3] }}"
+    >
+
+    <br><br>
+
+    <label>Descrição:</label>
+
+    <textarea name="descricao">{{ tarefa[4] }}</textarea>
+
+    <br><br>
+
+    <label>Prazo:</label>
+
+    <input
+        type="datetime-local"
+        name="prazo"
+        value="{{ tarefa[5] }}"
+    >
+
+    <br><br>
+
+    <label>Dificuldade:</label>
+
+    <select name="dificuldade">
+
+        <option value="facil">
+            Fácil
+        </option>
+
+        <option value="medio">
+            Médio
+        </option>
+
+        <option value="dificil">
+            Difícil
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Salvar Alterações
+    </button>
+
+</form>

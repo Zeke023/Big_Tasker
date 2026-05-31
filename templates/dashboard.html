@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <h1>
+        Bem-vindo, {{ usuario[0] }}
+    </h1>
+
+    <p>
+        Rank: {{ usuario[2] }}
+    </p>
+
+    <p>
+        XP Total: {{ usuario[1] }}
+    </p>
+
+    <a href="/ranking">
+
+    <button>
+        Ver Ranking
+    </button>
+
+    </a>
+
+    <hr>
+
+
+    <h2>Nova Tarefa</h2>
+
+<form action="/criar_tarefa" method="POST">
+
+    <label>Título:</label>
+    <input type="text" name="titulo">
+
+    <br><br>
+
+    <label>Descrição:</label>
+    <textarea name="descricao"></textarea>
+
+    <br><br>
+
+    <label>Prazo:</label>
+    <input type="datetime-local" name="prazo">
+
+    <br><br>
+
+    <label>Dificuldade:</label>
+
+    <select name="dificuldade">
+
+        <option value="facil">Fácil</option>
+        <option value="medio">Médio</option>
+        <option value="dificil">Difícil</option>
+
+    </select>
+
+    <br><br>
+
+    <label>Categoria:</label>
+
+    <input type="number" name="categoria">
+
+    <br><br>
+
+    <button type="submit">
+        Criar tarefa
+    </button>
+
+</form>
+
+<hr>
+
+    <h2>Minhas Tarefas</h2>
+
+    {% for tarefa in tarefas %}
+
+        <div>
+
+            <h3>{{ tarefa[3] }}</h3>
+
+            <p>
+                {{ tarefa[4] }}
+            </p>
+
+            <p>
+                Dificuldade: {{ tarefa[6] }}
+            </p>
+
+            <p>
+            {% if tarefa[7] == "concluida" and tarefa[10] == True %}
+
+                <p>
+                    ⚠️ Concluída com atraso
+                </p>
+
+            {% elif tarefa[7] == "concluida" %}
+
+                <p>
+                    ✅ Concluída
+                </p>
+
+            {% elif tarefa[10] == True %}
+
+                <p>
+                    🔴 Em atraso
+                </p>
+
+            {% else %}
+
+                <p>
+                    ⏳ Pendente
+                </p>
+
+            {% endif %}
+
+            <p>
+                XP: {{ tarefa[9] }}
+            </p>
+
+            <a href="/concluir_tarefa/{{ tarefa[0] }}">
+
+            <button>
+                Concluir
+            </button>
+
+            </a>
+
+            {% if tarefa[7] != "concluida" %}
+
+                <a href="/editar_tarefa/{{ tarefa[0] }}">
+
+                    <button>
+                        Editar
+                    </button>
+
+                </a>
+
+            {% endif %}
+
+            <a href="/excluir_tarefa/{{ tarefa[0] }}">
+
+            <button>
+                Excluir
+            </button>
+
+            </a>
+
+            <hr>
+
+        </div>
+
+    {% endfor %}
+
+    <a href="/logout">
+        Sair
+    </a>
+
+</body>
+</html>
